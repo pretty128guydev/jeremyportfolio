@@ -2,9 +2,13 @@ import { defineConfig } from 'vite'; // eslint-disable-line
 import react from '@vitejs/plugin-react'; // eslint-disable-line
 
 export default defineConfig({
-  base: '/',
+  base: '/', // Or use '/your-repo-name/' for GitHub Pages
   plugins: [react()],
+  optimizeDeps: {
+    include: ['react', 'react-dom'],
+  },
   build: {
+    chunkSizeWarningLimit: 1000,
     rollupOptions: {
       output: {
         manualChunks(id) {
@@ -13,13 +17,9 @@ export default defineConfig({
             if (id.includes('chart.js')) return 'vendor-chartjs';
             return 'vendor';
           }
-          return null; // Default return value
+          return null;
         },
       },
-    },
-    chunkSizeWarningLimit: 1000,
-    optimizeDeps: {
-      include: ['react', 'react-dom'],
     },
   },
 });
