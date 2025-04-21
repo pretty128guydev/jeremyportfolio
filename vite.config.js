@@ -16,7 +16,6 @@ export default defineConfig({
           return null; // Default return value
         },
       },
-      external: ['three'],
     },
   },
   optimizeDeps: {
