@@ -9,11 +9,14 @@ export default defineConfig({
       output: {
         manualChunks(id) {
           if (id.includes('node_modules')) {
-            return id.toString().split('node_modules/')[1].split('/')[0].toString();
+            if (id.includes('react')) return 'vendor-react';
+            if (id.includes('chart.js')) return 'vendor-chartjs';
+            return 'vendor';
           }
-          return null;
+          return null; // Default return value
         },
       },
     },
+    chunkSizeWarningLimit: 1000,
   },
 });
