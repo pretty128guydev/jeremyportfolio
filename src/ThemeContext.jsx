@@ -1,4 +1,5 @@
-import React, { createContext, useContext, useState } from 'react';
+import * as React from 'react';
+import { createContext, useContext, useState } from 'react';
 import PropTypes from 'prop-types';
 
 const ThemeContext = createContext();
